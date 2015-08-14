@@ -16,7 +16,7 @@ class Solution:
         if s is None or len(s) == 0:
             return 0
         n = len(s)
-        # len(f) = len(s) + 1, because s[] -> f = -1, s[0] -> f = 0
+        # len(f) = len(s) + 1, because s[:0] -> f[0] = -1, s[:1] -> f[1] = 0
         f = [i-1 for i in xrange(n+1)]
         # tups_cut = []
         # i from 1 -> n+1, since len(f) = n+1

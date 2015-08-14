@@ -21,6 +21,27 @@ class Solution:
         # bug: dict cannot be empty to use 'in'
         if len(dict) == 0:
             return False
+        # init
+        f = [False for i in xrange(len(s)+1)]
+        f[0] = True
+        # i loop from 1 to n+1, s[:i] from 1st char to nth since s[:n+1] = s[:n]
+        for i in xrange(1, len(s)+1):
+            for j in xrange(i):
+                if not f[j]:
+                    continue
+                if s[j:i] in dict:
+                    f[i] = True
+                    break
+        return f
+
+    # maxlen optimized
+    def wordBreakFast(self, s, dict):
+        # bug: base case is True
+        if s is None or len(s) == 0:
+            return True
+        # bug: dict cannot be empty to use 'in'
+        if len(dict) == 0:
+            return False
         # optimization, a word is short
         maxlen = max(len(word) for word in dict)
         # init
@@ -48,7 +69,7 @@ class Solution:
 
 # s = "lintcode"
 # dic = ["lint", "code"]
-S = "aaab"
+S = "aaaab"
 d = ["b", "aa"]
 Sol = Solution()
 print Sol.wordBreak(S, d)
