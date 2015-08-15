@@ -2,9 +2,9 @@
 
 """
 min/max
-State f[i][j]: first i chars in sequence a against first j chars in sequence b, the LCS length
+State f[i][j]: first i chars in sequence a against first j chars in sequence b, the LCSeq length
 Function: 
-    if a[i] == b[j]:
+    if a[i-1] == b[j-1]:
         f[i][j] = f[i-1][j-1] + 1
     else:
         f[i][j] = max(f[i-1][j], f[i][j-1])
