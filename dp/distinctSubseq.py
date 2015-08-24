@@ -1,7 +1,7 @@
 # distinctSubseq: http://www.lintcode.com/en/problem/distinct-subsequences/
 
 """
-count # solutions
+count # solutions: # subsequences of S == T
 State f[i][j]: the # solutions for the first i of S and the first j of T
 Function: 
                 if S[i-1] == T[j-1]:
