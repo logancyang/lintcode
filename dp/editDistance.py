@@ -9,7 +9,7 @@ Function:
                 else:
                     f[i][j] = min(f[i-1][j], f[i][j-1], f[i-1][j-1]) + 1
 Init: f[0][j] = j, f[i][0] = i
-Answer:
+Answer: f[-1][-1]
 """
 
 class Solution: 
