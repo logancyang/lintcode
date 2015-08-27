@@ -19,6 +19,7 @@ class Solution:
 
         length = 1
         while len(queue) != 0:
+            # these two lines: when BFS # levels is needed
             length += 1
             size = len(queue)
             for i in xrange(size):

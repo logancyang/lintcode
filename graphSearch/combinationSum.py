@@ -30,7 +30,7 @@ class Solution:
             # encounter the same number again, continue to next index
             if prev == self.candidates[i]:
                 continue
-            # recurse down from index i
+            # recurse down from index i, not i+1 since we can use the same number multiple times
             path.append(self.candidates[i])
             self.DFS(target - self.candidates[i], path, i)
             path.pop()
