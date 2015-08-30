@@ -16,6 +16,8 @@ class Solution:
 
     def DFS(self, path, ind, S):
         # base case, add each path of each recursion (sorted as required)
+        # must make new list, list(path). If not, 
+        # res (path) points to the obj passed in, which is empty at the beginning
         res = list(path)
         self.results.append(res)
         # i is the first item's index in a path
