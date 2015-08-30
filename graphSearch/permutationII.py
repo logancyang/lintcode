@@ -29,7 +29,7 @@ class Solution:
             # continue if the ith number is visited
             # or, it's not visited, it's the same number as the previous, 
             # and the previous was NOT visited
-            # AVOID DUPLICATE PERMUTATIONS BY ONLY ALLOWING CONTINUOUS SAME NUMBERS TO BE ADDED TO PATH
+            # AVOID DUPLICATE PERMUTATIONS BY ONLY ALLOWING CONTINUOUS SAME NUMBERS TO BE ADDED TO path
             if visited[i] == 1 or (i != 0 and nums[i] == nums[i-1] and visited[i-1] == 0):
                 continue
 

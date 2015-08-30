@@ -8,7 +8,7 @@ class Solution:
     def subsets(self, S):
         if S is None or len(S) == 0:
             return []
-
+        S.sort()
         self.results = []
         self.DFS([], 0, S)
         return self.results
@@ -18,7 +18,6 @@ class Solution:
         # must make new list, list(path). If not, 
         # res (path) points to the obj passed in, which is empty at the beginning
         res = list(path)
-        res.sort()
         self.results.append(res)
         # i is the first item's index in a path
         for i in xrange(ind, len(S)):
