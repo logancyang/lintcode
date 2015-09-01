@@ -43,9 +43,11 @@ class Solution:
             while left < right:
                 sum = numbers[i] + numbers[left] + numbers[right]
                 if sum == 0:
-                    # list() needed?
+                    # list() needed? Seems no. [] acts as creating new list.
                     one_result = [numbers[i], numbers[left], numbers[right]]
                     result.append(one_result)
+                    # update both pointers after getting one result
+                    # or bug: right + 1 index out of range
                     left += 1
                     right -= 1
                     # skip duplicates after successfully have one result
