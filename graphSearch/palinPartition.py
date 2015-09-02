@@ -22,7 +22,7 @@ class Solution:
             self.results.append(list(path))
             return
 
-        for i in xrange(start+1, len(s)+1):
+        for i in xrange(start+1, len(s)+1): # i should go to len(s) because s[:i]
             # enumerate the next substring, from start to i (exclusive)
             # if it is palin, recurse down. if not, loop to next char, new substring from start to i
             # start progesses by recursion. enumerate the substring starting from start, ending at i, and dfs
