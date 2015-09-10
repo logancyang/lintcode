@@ -44,5 +44,5 @@ class Solution:
                 else:
                     break
             stack.append(root)
-
+        # stack[-1] is inf, inf's left child is the element that last kicked-out by it, which is the root
         return stack[-1].left

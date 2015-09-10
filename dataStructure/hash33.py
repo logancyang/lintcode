@@ -1,7 +1,7 @@
 # hash33: http://www.lintcode.com/en/problem/hash-function/
 # python: ord("c"), return ascii
 # hash("abcd") = (a * 33^3 + b * 33^2 + c * 33 + d) % hashtable_size
-
+# This is APR (Apache Portable Runtime) hash function
 
 class Solution:
     """
@@ -17,4 +17,6 @@ class Solution:
             sum = sum % HASH_SIZE
         return sum
 
-print ord("c")
+Sol = Solution()
+print Sol.hashCode("abcd", HASH_SIZE=100)
+# print ord("c")
