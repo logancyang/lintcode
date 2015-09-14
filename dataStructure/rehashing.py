@@ -33,7 +33,6 @@ class Solution:
                 hashTable[i] = hashTable[i].next
         return new_table
 
-
 # Node_0 = ListNode(None)
 # Node_1 = ListNode(None)
 # Node_2 = ListNode(29)
