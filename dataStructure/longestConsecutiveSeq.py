@@ -6,6 +6,8 @@ class Solution:
     @return an integer
     """
     def longestConsecutive(self, num):
+        # use a dict as a hashset
+        # bug: do not use set([]), it's not iterable
         hash = {}
         for number in num:
             hash[number] = True
@@ -14,6 +16,7 @@ class Solution:
         for i in xrange(len(num)):
             # find the biggest consecutive number for num[i]
             top = num[i]
+            # bug: do not use set([]) for hash, it's not iterable
             while top in hash:
                 del hash[top]
                 top += 1
