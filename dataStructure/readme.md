@@ -1,18 +1,18 @@
 
-## 1. Queue: BFS (must-master)
+### 1. Queue: BFS (must-master)
 
 
-## 2. Stack: Min Stack
+### 2. Stack: Min Stack
 
 The idea is that we maintain 2 stacks, a target stack and a minStack. When we push an item in the target stack, we push the current min in the minStack. The min can be compared like this: min(number pushed in, top item in minStack). Each time we pop, we pop from minStack, too.
 
 
-## 3. Stack: Queue by 2 Stacks
+### 3. Stack: Queue by 2 Stacks
 
 The trick lies in the function adjust(): only when stack2 is empty, pour things in from stack1. Do not push to stack2 if it¡¯s not empty, it will ruin the order. When we push, we push to stack1. We we top() or pop(), adjust first and get the result from stack2.
 
 
-## 4. Stack: Largest Rectangle in Histogram
+### 4. Stack: Largest Rectangle in Histogram
 
 The brute force method is to enumerate the start point and the end point of a rectangle.
 
@@ -85,7 +85,7 @@ This algorithm is O(n).
 *When we want to search for the 1st smaller/bigger number to the left/right, use stack.*
 
 
-## 5. Stack: Max Tree
+### 5. Stack: Max Tree
 
 Use the conclusion from the previous problem: find the first bigger number of an element to its left/right, with a stack.
 
@@ -98,7 +98,7 @@ To determine the state of node i in max tree, we need it¡¯s parent, and whether 
 At last, use inf to kick out all elements in stack, just like we used -1 in the previous problem. Because all searches for a node¡¯s 1st bigger to the left/right happen when a node is popped out.
 
 
-## 6. Hash: APR Hash Function Magic Number 33
+### 6. Hash: APR Hash Function Magic Number 33
 
 Two main points for this problem. First, in Python, use ord(¡°a¡±) to get ¡°a¡±¡¯s ascii. Second, for the equation,
 ```
@@ -121,12 +121,12 @@ return sum
 In Java, Hashtable is thread-safe but slower than HashMap.
 
 
-## 7. Hash: Rehashing*
+### 7. Hash: Rehashing*
 
 The concept is in open hashing, when the number of elements is more than 1/10 of the capacity of the hash table, we double the capacity, and hash all element into the new hash table again. When hash collision, chain down.
 
 
-## 8. Hash: Longest Consecutive Sequence
+### 8. Hash: Longest Consecutive Sequence
 
 It¡¯s an quite straightforward idea. For each element in the list, we need to know how long it can stretch left and right consecutively - this is the outer for loop on all elements in list. 
 
@@ -137,7 +137,7 @@ The length of the longest consecutive sequence for each element in list is (top 
 The max(top - bottom - 1) for all iterations is the answer.
 
 
-## 9. Hash: LRU Cache
+### 9. Hash: LRU Cache
 
 LRU - Least Recently Used
 (LFU - Least Frequently Used)
@@ -173,7 +173,7 @@ set(key, value):
 	if not, push_back(new_node(key, value)), if length exceed capacity, pop_front()
 ```
 
-*Heap: Array, A[0] root, for A[i], left child is A[i*2+1], right child is A[i*2+2]*
+*Heap: Array, A[0] root, for A[i], left child is `A[i*2+1]`, right child is `A[i*2+2]`*
 ```
 	push(): O(log N)
 	pop(): O(log N)
@@ -187,20 +187,20 @@ For pop(), swap the last node X with the target node. For X, if X is larger than
 min() is O(1), A[0], the root.
 
 
-## 10. Heap: Data Stream Median
+### 10. Heap: Data Stream Median
 
 
 
-## 11. Heap: Merge K Sorted Lists
+### 11. Heap: Merge K Sorted Lists
 
 
-## Heap: Heapify*
+### Heap: Heapify*
 
 In heapofy(A), the big loop is the for loop starting from kth_node = len(A)/2, the lowest and last parent in the heap, call siftdown(A, kth_node), and decrement in each iteration.
 
 Siftdown(A, k):
 
-All of siftdown is this while loop. k can be the smallest already and break, or k can be updated to its child, k * 2 + 1 or k * 2 + 2. Each iteration heapifies the current triangle, and pass to the its subtree triangle and check again.
+All of siftdown is this while loop. k can be the smallest already and break, or k can be updated to its child, `k * 2 + 1` or `k * 2 + 2`. Each iteration heapifies the current triangle, and pass to the its subtree triangle and check again.
 
 
-## 12. Trie: Word Search II
+### 12. Trie: Word Search II
