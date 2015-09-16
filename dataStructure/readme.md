@@ -173,12 +173,18 @@ set(key, value):
 	if not, push_back(new_node(key, value)), if length exceed capacity, pop_front()
 ```
 
-Heap: Array, A[0] root, for A[i], left child is `A[i*2+1]`, right child is `A[i*2+2]`
+### Heap
+Essentially an array, A[0] is root, for A[i], left child is `A[i*2+1]`, right child is `A[i*2+2]`
 ```
 	push(): O(log N)
 	pop(): O(log N)
 	min() for min-heap, or max() for max-heap: O(1)
 ```
+**Python: [heapq](https://docs.python.org/2/library/heapq.html)**
+Two differences between this priority queue and the general priority queue in textbooks: *heapq* is a min-heap, and its index is zero-based. Max-heap is more suitable for in-place sorting.
+C++: priority_queue<>
+Java: PriorityQueue<>
+
 (The following examples are for min-heap)
 For push(), append new node at the end, siftup() (swap with parent) if needed. If the new node is the min, it calls siftup() logN (height of the tree) times.
 
@@ -189,6 +195,15 @@ min() is O(1), A[0], the root.
 
 ### 10. Heap: Data Stream Median
 
+Define median in this question: N = len(A), median is the N/2th number in the sorted order. This means if N is odd, median is in the middle; if N is even, median is the one a bit to the left.
+
+The idea is two maintain two heaps, one max-heap on median¡¯s left, and one min-heap on median¡¯s right. If the length of the 2 heaps are equal, or `len(max-heap) == len(min-heap) - 1`, median is the median. 
+
+To implement it, initialize `median = A[0]`. For loop from 1 to len(A) exclusive, in each iteration, if `A[i] < median`, add A[i] to max-heap; else add it to min-heap. If `len(max-heap) > len(min-heap)`, meaning the left side is too big, add median to min-heap, the new median is the top of max-heap, and pop this top out; else if `len(max-heap) + 1 < len(min-heap)`, meaning the right side is too big, add median to max-heap, the new median is the top of min-heap, and pop this top out. Finally, add this new median to the result list. Repeat this procedure in the for loop until the end.
+
+Note that when we shift median from left/right to right/left, we only use if/elif, not while loop. Since in each iteration we only add one A[i] in, so we only need one shift to maintain the relative equal length of the two sides.
+
+`from heapq import *` to use `heappush(heap, item)`, `heappop(heap)`, `heapify(A)` (*O(n)*) and more. `heap` is actually a list here.
 
 
 ### 11. Heap: Merge K Sorted Lists
