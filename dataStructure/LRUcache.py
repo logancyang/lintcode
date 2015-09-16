@@ -94,7 +94,7 @@ class LRUCache_D:
         self.capacity = capacity
 
     def push_back(self, node):
-        # idea is hash[node.key] = node.prev
+        # hash[node.key] = node
         self.hash[node.key] = node
         node.prev = self.tail
         self.tail.next = node
@@ -109,8 +109,6 @@ class LRUCache_D:
         next_node = self.head.next.next
         self.head.next = next_node
         next_node.prev = self.head
-        # set hash[new head.next.key] = head.next
-        self.hash[self.head.next.key] = self.head.next
 
     # change prev -> node -> next ... -> tail
     # to prev -> next ... -> tail -> node
