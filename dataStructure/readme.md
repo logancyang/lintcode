@@ -148,7 +148,7 @@ When use the singly-linked list, hash[node.key] = prev. This achieved 2 points. 
 
 But singly-linked list is not very straightforward for thinking. If allowed, we can use doubly-linked list and make hash[node.key] = node. The other difference is that when we delete node, prev.next = node.next, node.next.prev = prev.
 
-The methods for LRUCache are: __init__, push_back, pop_front, move_to_tail, get, set.
+The methods for LRUCache are: `__init__, push_back, pop_front, move_to_tail, get, set.`
 ```
 __init__(capacity): 
 	init with capacity. Create hash = {}, head=Node(None), tail=head.
@@ -173,7 +173,7 @@ set(key, value):
 	if not, push_back(new_node(key, value)), if length exceed capacity, pop_front()
 ```
 
-*Heap: Array, A[0] root, for A[i], left child is `A[i*2+1]`, right child is `A[i*2+2]`*
+Heap: Array, A[0] root, for A[i], left child is `A[i*2+1]`, right child is `A[i*2+2]`
 ```
 	push(): O(log N)
 	pop(): O(log N)
