@@ -49,7 +49,7 @@ This kind of problems is not easy to understand. Recursion tree diagrams can hel
 
 #### Subsets
 
-![test](https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0CAcQjRxqFQoTCLGX-6eJ_8cCFc0KkgodEUUFKg&url=http%3A%2F%2Fwww.businessinsider.com%2Fobama-will-comply-with-plan-b-ruling-2013-6&psig=AFQjCNHf5kckKaG4j4-S3WVqm6kC_lWlAw&ust=1442613768651191 "title test")
+![Subsets](images/subsets.png?raw=true "Subsets recursion tree")
 
 ```python
 class Solution:
@@ -81,7 +81,7 @@ class Solution:
 
 #### Permutations:
 
-![test](https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0CAcQjRxqFQoTCLGX-6eJ_8cCFc0KkgodEUUFKg&url=http%3A%2F%2Fwww.businessinsider.com%2Fobama-will-comply-with-plan-b-ruling-2013-6&psig=AFQjCNHf5kckKaG4j4-S3WVqm6kC_lWlAw&ust=1442613768651191 "title test")
+![Permutations](images/permutations.png?raw=true "Permutations recursion tree")
 
 ```python
 class Solution:
