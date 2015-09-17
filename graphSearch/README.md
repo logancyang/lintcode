@@ -22,20 +22,21 @@ Generally, when we do a search to enumerate cases using DFS recursion, there are
 
 The thinking is to categorize cases by different head items. 
 Enumerate the head item of a case (path) in a for loop in this way:
+
 1. Append the item into the path.
 2. DFS recurse down onto the next case (generally a smaller case, with advanced index and/or updated reference parameter).
 3. Pop the item from the path, to iterate to a different head item on the next iteration.
 
-For this specific Subsets problem, the base case is just adding the current path. For Subsets II, the only difference is that the input can have duplicates and we don¡¯t want the result subsets to be duplicate sets. Since the input is sorted (or we sort it by ourselves before DFS), when we encounter a number which is equal to the previous number in the for loop, we continue. Because the same number is taking the same place as the previous one, the resulting subsets with either of them are the same sets.
+For this specific Subsets problem, the base case is just adding the current path. For Subsets II, the only difference is that the input can have duplicates and we don't want the result subsets to be duplicate sets. Since the input is sorted (or we sort it by ourselves before DFS), when we encounter a number which is equal to the previous number in the for loop, we continue. Because the same number is taking the same place as the previous one, the resulting subsets with either of them are the same sets.
 
 
 ### Permutations I & II (DFS template)
 
-It¡¯s quite similar to the Subsets problems. The thinking is also to categorize cases by different head items, and enumerate the head item of a case (path) in a for loop. The difference is that now we don¡¯t want to keep track of the index as a parameter passed into DFS. Our base case is that when the path has the same length as the original input sequence, the current path is added.
+It¡¯s quite similar to the Subsets problems. The thinking is also to categorize cases by different head items, and enumerate the head item of a case (path) in a for loop. The difference is that now we don't want to keep track of the index as a parameter passed into DFS. Our base case is that when the path has the same length as the original input sequence, the current path is added.
 
 The for loop is now as such:
 1. Append the item into the path.
-2. DFS recurse down after appending the new head item. Avoid the same number by checking if it¡¯s already in path, if yes, continue.
+2. DFS recurse down after appending the new head item. Avoid the same number by checking if it's already in path, if yes, continue.
 3. Pop the item from the path, iterate to a different head item on the next iteration.
 
 For permutations II where we allow duplicates in the input list, we must sort it first and then do DFS. In the results, duplicate permutations must be avoided, but how? We introduce a new list, visited. We only add continuous same numbers to path, meaning if the previous same number is not visited, we continue. Check the code for details.
@@ -114,9 +115,9 @@ Combination Sum is the Sum version of Subsets, with duplicates allowed.
 
 #### Palindrome Partitioning
 
-We deem the cuts to be the member of a subset, and this problem becomes finding all subsets of valid cuts. If there are N cuts, we can choose whether to include each cut, so there are 2^N ways to cut our string. For O(2^N) problems, it¡¯s usually a Subsets problem.
+We deem the cuts to be the member of a subset, and this problem becomes finding all subsets of valid cuts. If there are N cuts, we can choose whether to include each cut, so there are 2^N ways to cut our string. For O(2^N) problems, it's usually a Subsets problem.
 
-The thinking is that, we have a substring from start to i, s[start:i], called prefix. This is the next head item of the new node (path) in the DFS tree, we later append it to path, DFS down, and pop. But before that we should check if it¡¯s a valid palindrome.
+The thinking is that, we have a substring from start to i, s[start:i], called prefix. This is the next head item of the new node (path) in the DFS tree, we later append it to path, DFS down, and pop. But before that we should check if it is a valid palindrome.
 
 For a fixed start, we loop through all substrings starting there, check if it satisfies the condition (palindrome in this case), if yes DFS down starting at i (the next char after s[old_start:i]). Again the template of DFS:
 ```
