@@ -128,7 +128,7 @@ for i in range(old_start_ind, data.length):
 	DFS(path, i or i+1, data)    # i or i+1 greater than old_start_ind
 	path.pop()
 ```
-For ¡°aab¡±, we have start = 0: `|a|ab, |aa|b, |aab|`; start = 1: `a|a|b, a|ab|`; start = 2: `aa|b|`; start = 3 == len, `aab|`, add one full path and return. start progresses by new recursion, i scans inside each recursion from `start+1` to `len+1`. 
+For `"aab"`, we have start = 0: `|a|ab, |aa|b, |aab|`; start = 1: `a|a|b, a|ab|`; start = 2: `aa|b|`; start = 3 == len, `aab|`, add one full path and return. start progresses by new recursion, i scans inside each recursion from `start+1` to `len+1`. 
 
 This is the method to enumerate all substrings that satisfies some condition.
 
