@@ -354,7 +354,6 @@ State f[i]: bool, can the first i chars be cut
 Function: f[i] = any(f[j]), j < i, (j+1)th char to ith char is a word
 Init: f[0] = True. For yes/no problems, f[0] = True
 Answer: f[len(s)]
-```
 
 Optimization: word max length l, inner loop on l, check f[i-l] and s[i-l:i].
 O(n^2) —> O(nl)
