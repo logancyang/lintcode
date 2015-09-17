@@ -32,9 +32,10 @@ For this specific Subsets problem, the base case is just adding the current path
 
 ### Permutations I & II (DFS template)
 
-It¡¯s quite similar to the Subsets problems. The thinking is also to categorize cases by different head items, and enumerate the head item of a case (path) in a for loop. The difference is that now we don't want to keep track of the index as a parameter passed into DFS. Our base case is that when the path has the same length as the original input sequence, the current path is added.
+It's quite similar to the Subsets problems. The thinking is also to categorize cases by different head items, and enumerate the head item of a case (path) in a for loop. The difference is that now we don't want to keep track of the index as a parameter passed into DFS. Our base case is that when the path has the same length as the original input sequence, the current path is added.
 
 The for loop is now as such:
+
 1. Append the item into the path.
 2. DFS recurse down after appending the new head item. Avoid the same number by checking if it's already in path, if yes, continue.
 3. Pop the item from the path, iterate to a different head item on the next iteration.
@@ -47,6 +48,8 @@ For permutations II where we allow duplicates in the input list, we must sort it
 This kind of problems is not easy to understand. Recursion tree diagrams can help to clarify, but also keep in mind the code templates: inside the for loop, check condition to recurse down, then append in path, DFS down with path (with appropriate update in some parameter), pop from path.
 
 #### Subsets
+
+![test](https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0CAcQjRxqFQoTCLGX-6eJ_8cCFc0KkgodEUUFKg&url=http%3A%2F%2Fwww.businessinsider.com%2Fobama-will-comply-with-plan-b-ruling-2013-6&psig=AFQjCNHf5kckKaG4j4-S3WVqm6kC_lWlAw&ust=1442613768651191 "title test")
 
 ```python
 class Solution:
@@ -76,7 +79,9 @@ class Solution:
             path.pop()
 ```
 
-Permutations:
+#### Permutations:
+
+![test](https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0CAcQjRxqFQoTCLGX-6eJ_8cCFc0KkgodEUUFKg&url=http%3A%2F%2Fwww.businessinsider.com%2Fobama-will-comply-with-plan-b-ruling-2013-6&psig=AFQjCNHf5kckKaG4j4-S3WVqm6kC_lWlAw&ust=1442613768651191 "title test")
 
 ```python
 class Solution:
