@@ -181,8 +181,11 @@ Essentially an array, A[0] is root, for A[i], left child is `A[i*2+1]`, right ch
 	min() for min-heap, or max() for max-heap: O(1)
 ```
 **Python: [heapq](https://docs.python.org/2/library/heapq.html)**
+
 Two differences between this priority queue and the general priority queue in textbooks: *heapq* is a min-heap, and its index is zero-based. Max-heap is more suitable for in-place sorting.
+
 C++: priority_queue<>
+
 Java: PriorityQueue<>
 
 (The following examples are for min-heap)
@@ -196,6 +199,8 @@ min() is O(1), A[0], the root.
 ### 10. Heap: Data Stream Median
 
 Define median in this question: N = len(A), median is the N/2th number in the sorted order. This means if N is odd, median is in the middle; if N is even, median is the one a bit to the left.
+
+Brute force O(n^2), we can do O(NlogN) with two heaps.
 
 The idea is two maintain two heaps, one max-heap on median¡¯s left, and one min-heap on median¡¯s right. If the length of the 2 heaps are equal, or `len(max-heap) == len(min-heap) - 1`, median is the median. 
 

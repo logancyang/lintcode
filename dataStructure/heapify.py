@@ -36,4 +36,4 @@ class Solution:
         for i in xrange(len(A)/2, -1, -1):
             self.siftdown(A, i)
 
-print range(20, 10, -1)
+# print range(20, 10, -1)
