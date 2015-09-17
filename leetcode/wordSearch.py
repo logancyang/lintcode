@@ -25,17 +25,21 @@ class Solution(object):
         return False
 
     def dfs(self, board, word, x, y):
+        # base case
         if len(word) == 0:
             return True
+
         len_row = len(board[0])
         len_col = len(board)
         new_word = word[1:]
+        # index out of range, then failed
         if x < 0 or y < 0:
             return False
         if x >= len_col or y >= len_row:
             return False
 
         if board[x][y] == word[0]:
+            # set visited to None
             board[x][y] = None
             if self.dfs(board, new_word, x, y+1):
                 return True
@@ -48,14 +52,16 @@ class Solution(object):
 
             if self.dfs(board, new_word, x-1, y):
                 return True
+            # don't forget to set visited slot back to original char after the dfs's
             board[x][y] = word[0]
         return False
+
 board = [
   "ABCE",
   "SFCS",
   "ADEE"
 ]
-word = "CCBC"
+word = "CBF"
 Sol = Solution()
 
 print Sol.exist(board, word)
