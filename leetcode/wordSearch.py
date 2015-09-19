@@ -1,6 +1,7 @@
 # wordSearch: https://leetcode.com/problems/word-search/
 # The question's input example is wrong. Input should be list of strings,
 # not list of list of strings.
+# TEMPLATE: RECURSION PATH SEARCH， TRUE OR FALSE
 
 
 class Solution(object):
@@ -18,6 +19,7 @@ class Solution(object):
         # visited entries in board are set to None
         len_row = len(board[0])
         len_col = len(board)
+        # each (x, y) as start point
         for y in xrange(len_row):
             for x in xrange(len_col):
                 if self.dfs(my_board, word, x, y):
