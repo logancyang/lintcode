@@ -214,6 +214,7 @@ Note that when we shift median from left/right to right/left, we only use if/eli
 ### 11. Heap: Merge K Sorted Lists
 
 
+
 ### Heap: Heapify*
 
 In heapofy(A), the big loop is the for loop starting from kth_node = len(A)/2, the lowest and last parent in the heap, call siftdown(A, kth_node), and decrement in each iteration.

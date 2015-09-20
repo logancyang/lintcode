@@ -1,4 +1,5 @@
 # singlenumberIII: http://www.lintcode.com/en/problem/single-number-iii/
+# Every number occurs twice except two. Find them.
 
 class Solution:
     """

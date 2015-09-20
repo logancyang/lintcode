@@ -114,3 +114,71 @@ The case that the modification inside a function doesn't go out is when we use "
 which the object has to modify itself.*
 
 
+#### Maximum Subarray Sum
+
+*Foreword: we must have negatives in the array to discuss this problem. If all positive, the subarray
+would be itself and the problem is trivial.*
+
+When there's something about subarray sum, think about *prefix sum*. The *prefix sum* of `i` is 
+defined as the sum from index 0 to `i`, namely `prefix_sum[i] = sum(A[:i+1])`. Then if we need the 
+subarray sum from `i` to `j`, we have `sub_sum_ij = prefix_sum[j] - prefix_sum[i-1]`.
+
+Note that **we don't have to explicitly compute the prefix sums, it requires O(N^2)**. We only need an
+accumulator. For item `j`, its accumulator not only gives us `prefix_sum[j]` which is simply the 
+accumulator itself, we can also record its historical `min_sum`, the min prefix_sum before the 
+current item `j`. This requires only one pass to yield the `max_diff` between `prefix_sum[j]` and 
+its previous min `prefix_sum`. 
+
+Beware,
+
+* `min_sum` is initialized to 0, not +inf. Because it's actually a previous state of the accumulator,
+and the accumulator starts at 0. For example, if the sum of `nums[:j]` (accumulator) reaches 0 or negative, 
+`min_sum` is reset to 0.
+* `max_diff` is the difference between prefix_sum elements, not the elements in the original 
+array (**Best Time to Buy and Sell Stock**).
+
+The prefix sum idea is a bit like *dynamic programming* in the sense that it avoid explicitly 
+computing it, but update base on the previous iteration.
+
+
+#### Best Time to Buy and Sell Stock
+
+1 transaction, find `max_profit`. Similar to finding `max_diff` in Maximum Subarray Sum in the sense 
+that it's one pass, but different because this one calculates the `max_diff` on this same array rather 
+than the accumulator.
+
+Iterate over all selling points, find the previous smallest number to be the buying point, so that 
+`sell - buy` is maximum.
+
+*This idea is also used for a lot of questions, such as **Largest Rectangle in Histogram** and 
+**Triangle** (min sum path). In the former, we enumerate the bars and check if we use it as the 
+lowest in the rectangle, what the max area of that rectangle is. For the latter, we enumerate the 
+min sum from the top to each end point, and find the min.*
+
+
+#### Best Time to Buy and Sell Stock II
+
+Unlimited transactions. Cannot buy and sell at the same time, must sell after buying.
+
+Greedy method. Any time there's a positive difference, add to profit.
+
+
+#### Maximum Subarray Sum II
+
+
+
+#### Best Time to Buy and Sell Stock III
+
+2 transactions. Similar to Maximum Subarray Sum II.
+
+
+
+
+
+
+
+
+
+
+
+
