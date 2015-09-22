@@ -10,14 +10,14 @@ class Solution:
         if prices is None or len(prices) == 0:
             return 0
 
-        prev_min = float("inf"); max_profit = 0
-        accumulator = 0
+        curr_min = prices[0]
+        max_profit = 0
+
         for i in xrange(len(prices)):
-            # for prices[i] as selling point, max_diff = prices[i] - prev_min --> local max_profit
-            # compare with global max_profit
-            max_profit = max(max_profit, prices[i] - prev_min)
-            # this prev_min is for the next i
-            prev_min = min(prev_min, prices[i])
+            # up to ith item, the min item
+            curr_min = min(curr_min, prices[i])
+            # global_max = max(global_max, local_max for ith)
+            max_profit = max(max_profit, prices[i] - curr_min)
         return max_profit
 
 A = [1, 2]

@@ -90,7 +90,7 @@ The majority number in this question occurs more than N/3 times, and there is on
 Use two candidates and two counts. Loop over the list, if the current number is `candidate1`, increment `count1`; 
 if the current is `candidate2`, increment `count2`; else decrement both `count1` and `count2`.
 
-Becareful, do not assume at the end that the larger of `count1` and `count2` is the majority number. Because the actual 
+Be careful, do not assume at the end that the larger of `count1` and `count2` is the majority number. Because the actual 
 majority number's count can be cancelled at early stage, e.g. [1, 1, 4, 5, 1, 1, 6, 7, 8, 8], we may think 8 is the majority since 
 1 gets cancelled out earlier.
 
@@ -150,10 +150,15 @@ than the accumulator.
 Iterate over all selling points, find the previous smallest number to be the buying point, so that 
 `sell - buy` is maximum.
 
-*This idea is also used for a lot of questions, such as **Largest Rectangle in Histogram** and 
+Set global max to 0, current min to `prices[0]`, 2 steps in the for loop:
+
+* Find the current min value
+* Find the global max by `max(global, local)`, where `local = prices[i] - current_min`
+
+This idea is also used for a lot of questions, such as **Largest Rectangle in Histogram** and 
 **Triangle** (min sum path). In the former, we enumerate the bars and check if we use it as the 
 lowest in the rectangle, what the max area of that rectangle is. For the latter, we enumerate the 
-min sum from the top to each end point, and find the min.*
+min sum from the top to each end point, and find the min.
 
 
 #### Best Time to Buy and Sell Stock II
@@ -170,6 +175,29 @@ Greedy method. Any time there's a positive difference, add to profit.
 #### Best Time to Buy and Sell Stock III
 
 2 transactions. Similar to Maximum Subarray Sum II.
+
+Split the array into 2 parts, and call the method of *Stock I* to compute the two max profits for left
+and right portions. Then enumerate all split points, find the max sum for left and right.
+
+The method above is the logical generalization of *Stock I*. But it has some redundant computations by calling
+the method again and again, losing the `curr_min` and loop from the beginning when actually one pass can do the job.
+
+So we implement the two parts of *Stock I* again in a more efficient way: save max profit for the left/right part in
+list `left` / `right`, and combine them to give the 2-transaction sum. The corner cases: left or right part is empty.
+When this happens, the max profit for that empty part is 0, and there is only 1 transaction.
+
+Beware,
+
+* `curr_min = prices[0]`, the scan from left to right: `local = prices[i] - curr_min`.
+* `curr_max = prices[-1]`, the scan from right to left: `local = curr_max - prices[i]`.
+* From left to right, index `range(1, n)`, because we have `left[i-1]`.
+* From right to left, index `range(n-2, -1, -1)`, because we have `right[i+1]`.
+
+
+
+
+
+
 
 
 
