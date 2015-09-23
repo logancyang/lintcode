@@ -170,6 +170,14 @@ Greedy method. Any time there's a positive difference, add to profit.
 
 #### Maximum Subarray Sum II
 
+Similar to *Stock III*, but the scan from the right is the same as from the left in this case:
+
+* `accumulator = 0, minSum = 0, max_diff = -inf`
+* For loop from 0 (left) or from n-1 (right).
+* `max_diff = max(max_diff, accumulator - minSum)`
+* `minSum = min(minSum, accumulator)`
+* Assign `left[i]` or `right[i]` to `max_diff` after.
+* Note `left[i] + right[i+1]`.
 
 
 #### Best Time to Buy and Sell Stock III
@@ -192,6 +200,27 @@ Beware,
 * `curr_max = prices[-1]`, the scan from right to left: `local = curr_max - prices[i]`.
 * From left to right, index `range(1, n)`, because we have `left[i-1]`.
 * From right to left, index `range(n-2, -1, -1)`, because we have `right[i+1]`.
+
+#### Best Time to Buy and Sell Stock IV*
+
+The solution is in directory *hard*.
+
+#### Minimum Subarray
+
+Find the minimum subarray sum. Instead, we can find maximum subarray for -A, and return `-max_diff`.
+
+#### Maximum Subarray Difference
+
+Find `|sum(A) - sum(B)|` for part A and B in the array.
+
+The idea is to make `sum(A)` small and `sum(B)` big, or the opposite. It's the combination of **minSubarray**
+and **maxSubarrayII**. Scan left and right,
+
+* `left_small, right_big`, find max(diff) between the two lists.
+* `left_big, right_small, find max(diff) between the two lists.
+* Note that left[i] operates with right[i+1]!
+
+
 
 
 

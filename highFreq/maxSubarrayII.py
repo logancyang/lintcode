@@ -31,7 +31,7 @@ class Solution:
             max_diff = max(max_diff, accumulator - minSum)
             minSum = min(minSum, accumulator)
             right[i] = max_diff
-
+        # BUG: range len-1, left[i] with right[i+1]
         max_diff = max([left[i] + right[i+1] for i in xrange(len(nums)-1)])
         return left, right
         # return max_diff
