@@ -217,10 +217,40 @@ The idea is to make `sum(A)` small and `sum(B)` big, or the opposite. It's the c
 and **maxSubarrayII**. Scan left and right,
 
 * `left_small, right_big`, find max(diff) between the two lists.
-* `left_big, right_small, find max(diff) between the two lists.
-* Note that left[i] operates with right[i+1]!
+* `left_big, right_small, find max(diff)` between the two lists.
+* Note that `left[i]` operates with `right[i+1]`!
 
+#### Two Sum
 
+Find the **1-based** indices for the two numbers in a list, which sum up to `target`.
+
+The direct thinking is to use a hashmap, store `hashmap[number] = index + 1`, and check
+if `hashmap[target - number]` exists, return the sorted two indices.
+
+Another method is to use **2-pointers**. Do not forget we **must sort the list to use 2-pointers**.
+For this particular problem, we want the indices, not the numbers themselves, so 2-pointers doesn't give
+a better space complexity than hashmap. Because we need to sort the list with the indices, we store the original
+indices and used O(n) space instead of O(1). The method itself is easy: 
+
+* Compare `numbers[start] + numbers[end]` with `target`
+* if `> target`, `end--`
+* if `< target`, `start++`
+* if `== target`, return
+
+#### Three Sum
+
+This time not indices but the actual numbers. Great.
+
+If we use hashmap, we enumerate a + b, and check if -(a + b) is in hashmap. This method uses O(n) space and 
+O(n^2) time.
+
+If we use 2-pointers, we enumerate a, and use 2-pointers to find `b + c == -a`. This is O(1) space and O(n^2) time.
+
+Note: 
+
+* Remember to skip duplicates immediately in the for loop and after adding result in the while loop.
+* As `i` progresses, `start = i + 1` is all right. We have added results involving the previous numbers, now we can
+safely look ahead.
 
 
 
