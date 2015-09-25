@@ -8,15 +8,50 @@ class Solution:
     return: An integer
     """
     # for positives
-    def bitSwapRequired(self, a, b):
+    def bitSwapRequiredPos(self, a, b):
         n = a ^ b
         count = 0
+        # for positive n
         while n > 0:
             count += 1
             n = n & (n - 1)
         return count
 
-a = 31
-b = 14
+    def bitSwapRequired(self, a, b):
+        str_a = self.toBinString32(a)
+        str_b = self.toBinString32(b)
+        count = 0
+        for i in xrange(32):
+            if str_a[i] != str_b[i]:
+                count += 1
+        return count
+
+    def toBinString32(self, a):
+        """
+        convert decimal to 32-bit Two's Complement form
+        """
+        if a >= 0:
+            str_a = bin(a)[2:]
+            len_a = len(str_a)
+            len_fill = 32
+            return str_a.zfill(len_fill)
+        else:
+            mask32 = 0b11111111111111111111111111111111
+            str_a = bin(a & mask32)[2:]
+            len_fill = 32
+            return str_a.zfill(len_fill)
+
+# raw_input() outputs string
+# run SublimeREPL Python Run Current File
+a = 1
+b = -1
 Sol = Solution()
 print Sol.bitSwapRequired(a, b)
+
+## NOTE: how to use raw_input to input a list
+# lst = raw_input("enter your list: ")
+# print lst
+# print type(lst)
+# lst = eval(lst)
+# print lst
+# print type(lst)
