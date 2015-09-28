@@ -205,11 +205,11 @@ Beware,
 
 The solution is in directory *hard*.
 
-#### Minimum Subarray
+#### Minimum Subarray (Max Subarray)
 
 Find the minimum subarray sum. Instead, we can find maximum subarray for -A, and return `-max_diff`.
 
-#### Maximum Subarray Difference
+#### Maximum Subarray Difference (Min Subarray + Max Subarray II)
 
 Find `|sum(A) - sum(B)|` for part A and B in the array.
 
@@ -220,7 +220,7 @@ and **maxSubarrayII**. Scan left and right,
 * `left_big, right_small, find max(diff)` between the two lists.
 * Note that `left[i]` operates with `right[i+1]`!
 
-#### Two Sum
+#### Two Sum (hash or 2-pointers)
 
 Find the **1-based** indices for the two numbers in a list, which sum up to `target`.
 
@@ -237,7 +237,7 @@ indices and used O(n) space instead of O(1). The method itself is easy:
 * if `< target`, `start++`
 * if `== target`, return
 
-#### Three Sum
+#### Three Sum (hash or 2-pointers)
 
 This time not indices but the actual numbers. Great.
 
@@ -252,13 +252,13 @@ Note:
 * As `i` progresses, `start = i + 1` is all right. We have added results involving the previous numbers, now we can
 safely look ahead.
 
-#### Two/Three Sum Closest
+#### Two/Three Sum Closest (2-pointers)
 
 Find the sum of two/three numbers in the array which is closest to `target`.
 
 Similar to Two/Three Sum. Use 2-pointers and keep track of the `min_dist = abs(sum - target)`.
 
-#### Four Sum
+#### Four Sum (hash)
 
 * Sort the array: `O(nlogn)`
 * Enumerate the first two smaller numbers: `O(n^2)`
@@ -274,6 +274,38 @@ We need `O(nlogn) + O(n^2) * O(n) = O(n^3)` time to solve Four Sum. Try to use h
 Generally it can be `O(n^2) + O(n^2) = O(n^2)`.
 
 (The K-Sum problem in the problem set is not a generalization of Two/Three/Four Sum, it's a DP backpack)
+
+#### Partition Array (2-pointers)
+
+Put numbers smaller than pivot to the left, and those greater or equal to pivot to the right.
+
+A typical 2-pointers problem. Its variation (put pivot in the right place) is a part of **QuickSort**.
+
+The `start` pointer increments while `start <= end` still and `nums[start] < pivot`, meaning the item is 
+already in the right place. The same for `end`, it decrements while `start <= end` holds and 
+`nums[end] >= pivot`.
+
+Then check if after those increments and decrements, if still `start < end`, it means we have found a case
+where the swap is needed. Swap `nums[start]` and `nums[end]`.
+
+Finally, return `start` (not `end`) which is the first index where it's greater than pivot.
+
+#### Sort Colors I and II (2-pointers or counting sort)
+
+We can use 2-pointers similar to Partition Array. We check for each color in the required order.
+
+Fot the 1st color A, we put A in front and non-A to the back. Then we check color B. Since A's are already
+in the right places, we start from the 1st non-A, put B in front and non-B to the back... To achieve this,
+just write a helper function that uses 2-pointers to swap in-place and returns the `start` (1st non-pivot index),
+and call it for different pivots in order.
+
+Alternatively, we can use **Counting Sort**. For example, `[2, 1, 1, 2, 3, 3, 1]`, we count the # of each
+color and get a histogram array `[3, 2, 2]` where the `index + 1` here is the color id number, the value is the count.
+Then we unfold this histogram array to a new array `[1, 1, 1, 2, 2, 3, 3]` by putting 3 1's, 2 2's, 2 3's into it.
+
+
+
+
 
 
 
