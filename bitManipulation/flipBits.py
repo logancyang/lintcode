@@ -36,7 +36,7 @@ class Solution:
             len_fill = 32
             return str_a.zfill(len_fill)
         else:
-            mask32 = 0b11111111111111111111111111111111
+            mask32 = int('0b' + '1' * 32, 2)
             str_a = bin(a & mask32)[2:]
             len_fill = 32
             return str_a.zfill(len_fill)

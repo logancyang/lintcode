@@ -252,6 +252,14 @@ Note:
 * As `i` progresses, `start = i + 1` is all right. We have added results involving the previous numbers, now we can
 safely look ahead.
 
+#### Two/Three Sum Closest
+
+Find the sum of two/three numbers in the array which is closest to `target`.
+
+Similar to Two/Three Sum. Use 2-pointers and keep track of the `min_dist = abs(sum - target)`.
+
+#### Four Sum
+
 
 
 
