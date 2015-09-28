@@ -260,8 +260,20 @@ Similar to Two/Three Sum. Use 2-pointers and keep track of the `min_dist = abs(s
 
 #### Four Sum
 
+* Sort the array: `O(nlogn)`
+* Enumerate the first two smaller numbers: `O(n^2)`
+  * Use 2-pointers to scan through the last two numbers: `O(n)`
 
+We need `O(nlogn) + O(n^2) * O(n) = O(n^3)` time to solve Four Sum. Try to use hashmap to make it faster.
 
+"Half-fold Search" method: (can be generalized to k sum with k > 4)
+
+* Enumerate two sums and store them in a hashmap (dict), key: sum, value: `(index1, index2)`.
+* Enumerate the other two numbers, let their sum be `x`, check if `target - x` is a key in dict.
+
+Generally it can be `O(n^2) + O(n^2) = O(n^2)`.
+
+(The K-Sum problem in the problem set is not a generalization of Two/Three/Four Sum, it's a DP backpack)
 
 
 
