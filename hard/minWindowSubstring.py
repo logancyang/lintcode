@@ -17,15 +17,16 @@ needToFind['a'] = #
 
 
 class Solution:
-    # @return a string
-    def minWindow(self, S, T):
-        if S is None or T is None:
-            return ""
-        if len(S) == 0 or len(T) == 0:
-            return ""
+    """
+    @param source: A string
+    @param target: A string
+    @return: A string denote the minimum window
+             Return "" if there is no such a string
+    """
+    def minWindow(self, source, target):
         hasFound = {}
         needToFind = {}
-        for char in T:
+        for char in target:
             if char not in needToFind:
                 needToFind[char] = 1
             else:
@@ -33,39 +34,46 @@ class Solution:
         start = 0
         count = 0
         result = ""
-        minlen = float("inf")
-        for end in xrange(len(S)):
-            # make hasFound hist for current window until hist has all keys and values of needToFind
-            char = S[end]
-            if char not in T:
+        minWindow = float("inf")
+        for end in xrange(len(source)):
+            new_char = source[end]
+            if new_char not in needToFind:
                 continue
-            # update hasFound hist
-            if char not in hasFound:
-                hasFound[char] = 1
+
+            if new_char not in hasFound:
+                hasFound[new_char] = 1
             else:
-                hasFound[char] += 1
-            # count # of T's char in window
-            # keep count unchanged if has[] exceed the need[]
-            # and when has[] > need[], roll start forward
-            if hasFound[char] <= needToFind[char]:
+                hasFound[new_char] += 1
+            # compare two hists
+            if hasFound[new_char] <= needToFind[new_char]:
                 count += 1
-            # if window found
-            if count == len(T):
-                # for or: needToFind[key_not_exists] is fine
-                while S[start] not in T or hasFound[S[start]] > needToFind[S[start]]:
-                    # for and: needToFind[key_not_exists] is NOT fine
-                    if S[start] in T and hasFound[S[start]] > needToFind[S[start]]:
-                        hasFound[S[start]] -= 1
+            
+            if count == len(target):
+                while source[start] not in needToFind or hasFound[source[start]] > needToFind[source[start]]:
+                    if source[start] in needToFind and hasFound[source[start]] > needToFind[source[start]]:
+                        hasFound[source[start]] -= 1
                     start += 1
-
-                if len(S[start:end+1]) < minlen:
-                    minlen = len(S[start:end+1])
-                    result = S[start:end+1]
-
+            
+                if len(source[start:end+1]) < minWindow:
+                    minWindow = len(source[start:end+1])
+                    result = source[start:end+1]
+            
         return result
 
-# S = "ADOBECODEBANC"
-# T = "ABC"
+# def minWindow(self, s, t):
+#     need, missing = collections.Counter(t), len(t)
+#     i = I = J = 0
+#     for j, c in enumerate(s, 1):
+#         missing -= need[c] > 0
+#         need[c] -= 1
+#         if not missing:
+#             while i < j and need[s[i]] < 0:
+#                 need[s[i]] += 1
+#                 i += 1
+#             if not J or j - i <= J - I:
+#                 I, J = i, j
+#     return s[I:J]
+
 S = "acbbaca"
 T = "aba"
 Sol = Solution()
