@@ -123,6 +123,9 @@ When there's something about subarray sum, think about *prefix sum*. The *prefix
 defined as the sum from index 0 to `i`, namely `prefix_sum[i] = sum(A[:i+1])`. Then if we need the 
 subarray sum from `i` to `j`, we have `sub_sum_ij = prefix_sum[j] - prefix_sum[i-1]`.
 
+Hence, we get the maximum subarray sum by finding the minimum previous prefix sum for each end point,
+maximize the difference to get a local result, and find the max local result as the global result.
+
 Note that **we don't have to explicitly compute the prefix sums, it requires O(N^2)**. We only need an
 accumulator. For item `j`, its accumulator not only gives us `prefix_sum[j]` which is simply the 
 accumulator itself, we can also record its historical `min_sum`, the min prefix_sum before the 
@@ -302,6 +305,30 @@ and call it for different pivots in order.
 Alternatively, we can use **Counting Sort**. For example, `[2, 1, 1, 2, 3, 3, 1]`, we count the # of each
 color and get a histogram array `[3, 2, 2]` where the `index + 1` here is the color id number, the value is the count.
 Then we unfold this histogram array to a new array `[1, 1, 1, 2, 2, 3, 3]` by putting 3 1's, 2 2's, 2 3's into it.
+
+#### Max Product Subarray
+
+*Return the product.*
+
+This is different than Max Subarray Sum. A max product can be obtained by a previous negative min value 
+times a negative current value.
+
+`maxlist[i]` and `minlist[i]` store the local max and min product for the subarray ending at `i` (must include
+`nums[i]` in the product).
+
+The local max/min product can be the max/min of the 3 values: `nums[i]`, `nums[i] * maxlist[i-1]`, `nums[i] * minlist[i-1]`
+with no regards to `nums[i]` being positive/negative.
+
+#### Subarray Sum Closest
+
+*Return `[start, end]` indices.*
+
+The brute force algorithm is to enumerate all subarrays O(n^2) and summing them up O(n) to find the 
+one closest to 0, a total O(n^3).
+
+The better method is to calculate all prefix sums in one pass using accumulator O(n), and store tuples
+`(prefix_sum[i], i)` in a list, then sort the list using key prefix_sums O(nlogn). The two closest prefix sums O(n)
+can give rise to a subarray sum closest to zero.
 
 
 

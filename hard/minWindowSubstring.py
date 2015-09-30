@@ -1,4 +1,6 @@
 # minWindowSubstring: http://www.lintcode.com/en/problem/minimum-window-substring/#
+# for loop end point, for each end, there's a fixed unique min window start position
+# method: comparing 2 histograms (dicts), check whether 1 has reached the other
 
 """
 Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
