@@ -80,6 +80,66 @@ class Brute:
                 return True
         return False
 
+# better
+# search from outside, reverse the flow
+# the intersection of the sets of points reachable by both pac and atl is the result
+class Solution:
+
+    def flowingWater(self, mat):
+        result = []
+        if mat is None or len(mat) == 0:
+            return result
+        nrow = len(mat)
+        ncol = len(mat[0])
+        pac_set = set()
+        atl_set = set()
+        # pac points: (0, j), (i, 0)
+        for j in xrange(ncol):
+            pac_set.add((0, j))
+            self.dfs(mat, 0, j, pac_set)
+
+        for i in xrange(nrow):
+            pac_set.add((i, 0))
+            self.dfs(mat, i, 0, pac_set)
+
+        # atl points: (n-1, j), (i, n-1)
+        for j in xrange(ncol):
+            atl_set.add((nrow - 1, j))
+            self.dfs(mat, nrow - 1, j, atl_set)
+
+        for i in xrange(nrow):
+            atl_set.add((i, ncol - 1))
+            self.dfs(mat, i, ncol - 1, atl_set)
+
+        result_set = pac_set.intersection(atl_set)
+        result = list(result_set)
+        # return pac_set, atl_set
+        return result
+
+    # reverse flow dfs, go to larger '>' points
+    # modify set 'visited'
+    def dfs(self, mat, i, j, visited):
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        nrow = len(mat)
+        ncol = len(mat[0])
+        # base case
+        if i < 0 or i >= nrow or j < 0 or j >= ncol:
+            pass
+        # recursion
+        for direction in directions:
+            new_i = i + direction[0]
+            new_j = j + direction[1]
+            if new_i < 0 or new_i >= nrow or new_j < 0 or new_j >= ncol:
+                continue
+            if mat[new_i][new_j] < mat[i][j] or (new_i, new_j) in visited:
+                continue
+            visited.add((new_i, new_j))
+            self.dfs(mat, new_i, new_j, visited)
+            # bug: do not undo the change in this case
+            # because dfs need to modify it after execution
+            # visited.discard((new_i, new_j))
+
+
 inputMat1 = [
     [1,2,2,3,5],
     [3,2,3,4,4],
@@ -88,11 +148,13 @@ inputMat1 = [
     [5,1,1,2,4]
 ]
 
-Sol = Brute()
+# Sol = Brute()
 # print inputMat1[0][1]
 # print Sol.dfs(inputMat1, 1, 4, set(), "pac")
 # print Sol.dfs(inputMat1, 0, 1, set(), "atl")
 # print Sol.check(inputMat1, 1, 4)
+# print Sol.flowingWater(inputMat1)
+Sol = Solution()
 print Sol.flowingWater(inputMat1)
 
 
