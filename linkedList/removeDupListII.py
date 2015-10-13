@@ -39,3 +39,4 @@ class Solution:
                 node = node.next
 
         return dummy.next
+
