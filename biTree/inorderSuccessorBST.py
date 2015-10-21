@@ -35,6 +35,3 @@ class Solution(object):
             root = root.left
 
         return root
-
-
-
